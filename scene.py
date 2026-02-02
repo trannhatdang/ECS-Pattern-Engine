@@ -1,4 +1,6 @@
 import gameobject
+import time
+import pygame
 class Scene():
     def __init__(self, display_surf, size = (1280, 720)):
         self._display_surf = display_surf
@@ -21,13 +23,10 @@ class Scene():
     def on_event(self, event):
         if event.type == pygame.QUIT:
             self._running = False
+            self._next_scene = -1
 
     def on_execute(self):
-        if self.on_init() == False:
-            self._running = False
-            self._next_scene = -1
- 
-        while( self._running ):
+        while self._running :
             start_time = time.time()
 
             for event in pygame.event.get():
